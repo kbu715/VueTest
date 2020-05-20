@@ -1,0 +1,366 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id='App'>
+            
+        </div>
+        <script>
+            new Vue({
+                el:'#App', //element
+                data:{
+                    msg:'호랭이',
+                },
+                template:'<h1>{{msg}}</h1>', //디자인쪽
+            })
+        </script>
+    </body>
+</html> -->
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <div id='App'>
+            <button v-on:click='num++'>{{num}}</button>
+        </div>
+        <script>
+            new Vue({
+                el:'#App', //element
+                data:{
+                    num:0,
+                },
+            })
+        </script>
+    </body>
+</html> -->
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <div id='App'>
+            v-on : 우리말로는 지시어 영어로는 디렉티브 
+            <button v-on:click=f1()>{{num}}</button>
+            <button v-on:click=f2()>{{num}}</button>
+            <button>{{f3()}}</button>
+        </div>
+        <script>
+            new Vue({
+                el:'#App', //element
+                data:{
+                    num:0,
+                },
+                methods:{
+                    f1:function(){ console.log(1); },
+                    f2:()=>{ console.log(2); },
+                    f3:()=>{ return '고양이' },
+                },
+            })
+        </script>
+    </body>
+</html> -->
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <div id="App1">
+        <h1 v-if='flag2'>dd</h1>
+            <h1>tt</h1> 
+
+         <ul>
+                <li v-for='xxx in items'>{{xxx}}</li>
+            </ul> 
+        <h1>ㅎㅎ</h1>
+        <tiger></tiger>
+        <lion></lion>
+    </div>
+     <div id='App2'>
+
+        </div> 
+    <script>
+        new Vue({
+            el: "#App1", //el: 예약된 키워드
+            // data:{
+            //     // flag1:false,
+            //     // flag2:true,
+            //     items:['호랭이','사자','독수리']
+            // },
+            // methods:{
+
+            // },
+            components: {
+                tiger: {
+                    template: '<h1>tiger컴포넌트</h1>'
+                },       //tiger:컴포넌트이름
+                lion: {
+                    template: '<h1>lion컴포넌트</h1>'
+                },
+            },
+        })
+            //Vue 인스턴스를 1개이상 생성해서 사용할 수 있다.
+            // new Vue({
+            //     el:"#App2",
+            // })
+    </script>
+</body>
+
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>    
+</head>
+<body>
+<div id="App1">
+    <h1>코끼리</h1>
+    <tiger></tiger>
+    <lion></lion>
+</div>
+    <script>
+        new Vue({
+            el: '#App1',
+            components: {//Vue 인스턴스 안에서 정의를 하고 있기 때문에 이것은 내부 컴포넌트라고 한다. 지역컴포넌트
+                tiger: {
+                    template: '<h1>호랑이</h1>',
+                },
+                lion: {
+                    template: ` // `:키보드에서 숫자 1 왼쪽
+                    <div>
+                    <h1>독수리</h1>
+                    <h1>사자</h1>
+                    </div>`,
+                },
+            },
+        })
+    </script>
+</body>
+</html> -->
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App1">
+        <tiger></tiger>
+        <lion></lion>
+    </div>
+    <script>
+        //전역컴포넌트는 코드의 순서에 영향을 받는다.
+        //첫번째 인수는 컴포넌트 name
+        Vue.component('tiger',{
+            template:'<h1>타이거</h1>',
+        })
+        Vue.component('lion',{
+            template:'<h1>라이언</h1>',
+        })
+        new Vue({
+            el: '#App1',
+
+        })
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App1">
+        <outter></outter>
+        <tiger></tiger>
+
+    </div>
+    <div id="App2">
+        <outter></outter>
+        
+    </div>
+    <script>
+        //전역컴포넌트는 코드의 순서에 영향을 받는다.
+        //첫번째 인수는 컴포넌트 name
+        Vue.component('outter', {
+            template: '<h1>타이거</h1>',
+        })
+
+        new Vue({
+            el: '#App1',
+            componets: {
+                tiger: {
+                    template: '<h1>호랑이</h1>',
+                },
+            },
+        });
+        new Vue({
+            el: '#App2',
+        })
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title></title>
+    </head>
+    <body>
+        <div id="App1">
+            <h1>tiger</h1>
+            <tiger></tiger>
+            <lion></lion>
+        </div>
+        <div id="App2">
+            <h1>tiger</h1>
+            <tiger></tiger>
+            <lion></lion> 사용불가
+        </div>
+        <script>
+            Vue.component('tiger', {
+                template : '<h1>호랑이</h1>'
+            });
+            new Vue({ 
+                el : '#App1',
+                components : {
+                    lion : {
+                        template : '<h1>사자</h1>'
+                    },
+                },
+            });
+            new Vue({
+                el : '#App2',
+            });
+        </script>
+    </body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>    
+</head>
+<body>
+<div id="App1">
+    <h1>코끼리</h1>
+    <tiger></tiger>    
+</div>
+    <script>
+       Vue.component(
+           'tiger', {
+            template: `<h1>호랑이</h1>`,
+            data:function(){ //Vue의 문법 data 설정할때는 function으로 정의한다.(전역컴포넌트일때?)
+                return {
+                    num:10
+                }
+            },
+            methods:{
+                f1: function(){
+                    console.log('f1');
+                    this.num++
+                    //람다로 만들면 안됀다.
+                },
+            },     
+            template:'<button @click=f1>{{num}}</button>',        //v-on: 이거랑 @이랑 치환됌
+        })
+        new Vue({
+            el: '#App1',          
+        })       
+    </script>
+</body>
+</html>
+
+
