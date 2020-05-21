@@ -324,7 +324,7 @@
 
 
 
-
+<!-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -361,6 +361,570 @@
         })       
     </script>
 </body>
+</html> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>    
+</head>
+<body>
+<div id="App1">
+    <input v-model=msg>
+    <h1>{{msg}}</h1>
+</div>
+    <script>
+      
+        new Vue({
+            el: '#App1',          
+            data: {
+                msg:'냉면먹고싶다'
+            },
+        })       
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html><html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App">
+        <tiger></tiger>
+        <lion></lion>
+    </div>
+    <script>
+        Vue.component('tiger', {
+            data: function () {
+                return {
+                    num: 0
+                }
+            },
+            methods: {
+                f1: function () {
+                    // console.log(1)
+                    this.num++
+                },
+
+                //람다를 쓰면 안됀다.
+                // f1:()=>{
+                //     this.num++
+                // }
+            },
+            template: '<button @click=f1>{{num}}</button>',
+
+        })
+
+    new Vue({
+        el: '#App',
+        components: {
+            lion: {
+                template: '<button @click=f1>{{num}}</button>',
+                methods: {
+                    f1: function () {
+                        // console.log(1)
+                        this.num++
+                    },
+
+                    //람다를 쓰면 안됀다.
+                    // f1:()=>{
+                    //     this.num++
+                    // }
+                },
+                data: function () {
+                        return {
+                            num: 0
+                        }
+                    },
+
+            }
+        },
+
+    })
+    </script>
+</body>
+    
+</html> -->
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App">
+        <tiger :dname=sname :dage=sage></tiger> 
+    </div>
+    <script>
+        
+        Vue.component("tiger",{
+            template:'<div><h1>{{dname}},{{dage}}</h1><button v-on:click=f1>버튼</button></div>',
+            // props:{
+            //     name:String,
+            //     age:Number,
+            // },
+            props: ['dname', 'dage'],
+            methods: {
+                f1: function(){
+                    console.log(typeof(this.dage));                    
+                }
+            }            
+        });
+        new Vue( {
+            el: '#App',
+            data:{
+                sname:'eee',
+                sage: 30,   //s -> source
+
+            },
+        });
+    </script>
+  </body>
+
 </html>
 
+v-bind쓰면 typeof썼을때 숫자가 문자열에서 숫자로 나온다.
+v-bind: :으로 치환 할 수있다.
+ -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App">
+        <tiger v-bind:name=name v-bind:age=age></tiger> //v-bind 
+    </div>
+    <script>
+        Vue.component("tiger",{
+            template:'<div><h1>{{name}},{{age}}</h1><button v-on:click=f1>버튼</button></div>',
+            // props:{
+            //     name:String,
+            //     age:Number,
+            // },
+            props: ['name', 'age'],
+            methods: {
+                f1: function(){
+                    console.log(typeof(this.age));                    
+                }
+            }            
+        });
+        new Vue( {
+            el: '#App',
+            data:{
+                name:'eee',
+                age: 30,   //s -> source
+
+            },
+        });
+    </script>
+  </body>
+
+</html> -->
+
+
+
+
+
+
+<!-- 
+
+왜안돼 ㅠㅠ
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App">
+        <h1>{{f1()}}</h1>
+        <h1>{{count1}}</h1>
+        <button v-on:click='count1++'>button</button>
+        <h1>{{f2}}</h1>
+        <h1>{{count2}}</h1>
+        <button v-on:click='count2++'>button</button>
+        
+    </div>
+    <script>
+       
+        new Vue( {
+            el: '#App',
+            data:{
+                count1:0,
+                count2:0,
+            
+            },
+            methods: {
+                f1 : ()=>{
+                    console.log(this.count1);
+                
+                },
+                
+            },
+            computed: { //computed 안에있는 함수는 호출할때 f2() 라고 안한다 f2만 써도 된다.
+                f2 : ()=>{
+                    console.log(this.count1);
+                    
+                }
+            },
+           
+        });
+    </script>
+  </body>
+
+</html> -->
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="App">        
+    <button v-on:click="count1++">Count</button>
+    <h1>{{f1()}}</h1>
+    <h1>{{count1}}</h1>
+    <button v-on:click="count2++">Count</button>
+    <h1>{{f2}}</h1>
+    <h1>{{count2}}</h1>
+</div>
+    <script>
+        new Vue({
+            el: "#App",
+            data: {
+                count1: 0,
+                count2: 0,
+            },
+            methods:{
+                f1: function(){
+                    console.log(this.count1);
+                },
+            },
+            computed:{
+                f2: function(){
+                    console.log(this.count1)
+                },
+            },
+        })
+    </script>
+    </body>
+    </html> -->
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App">
+        <com1 v-on:showmethemoney='f2'></com1> 
+    </div>
+    <script>
+        //내가 만든 이벤트 showmethmoney가 발생하면 f2함수를 콜해라..
+        new Vue({
+            el: "#App",
+            components: {
+                com1: {
+                    template: `<button v-on:click='f1'>button</button>`,
+                    methods: {
+                        f1:function(){
+                            console.log('f1 call');
+                            this.$emit('showmethemoney'); //강제로 이벤트호출
+                        }
+                    },
+                }
+
+            },
+
+            methods: {
+                f2: function () {
+                    console.log('f2 call');
+                },
+            },
+
+        })
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App">
+        <Bpp></Bpp>
+    </div>
+  
+
+    <script>
+       
+        Vue.component('Bpp',{
+            template: `<div>
+                       <button>Bpp</button>
+                       <Cpp></Cpp>
+                       <Dpp></Dpp>
+                       </div>`
+
+        })
+        Vue.component('Cpp',{
+            template: ` <div>
+                        <button>Cpp</button>
+                        </div>`
+
+        })
+        Vue.component('Dpp',{
+            template: ` <div>
+                        <button>Dpp</button>
+                        </div>`
+
+        })
+        new Vue({
+            el: "#App",
+            
+        })
+
+    </script>
+</body>
+
+</html>  -->
+
+
+
+<!-- 왜 안돼 ㅇ나ㅣㅓ리ㅏㄴㅇ멀;
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App">
+        <com1></com1>
+        <com2></com2>
+
+    </div>
+
+
+    <script>
+
+
+        //step 1 : 이벤트 객체 생성
+        //step 2 : created 로그 출력 확인
+
+        let eventBus = new Vue();
+
+        Vue.component('com1', {
+            template: `<button @click=f1>button1</button>`,
+            methods: {
+                f1:function(){
+                    eventBus.$emit('eb')
+                    
+                }
+            },
+
+        })
+        Vue.component('com2', {
+            template: `<button>button2</button>`,
+            created: function () {
+                console.log(1);
+                eventBus.$on('eb',100, (value)=>{ console.log(value) }) //이벤트를 예약하는거
+            }
+        })
+
+        new Vue({
+            el: "#App",
+
+
+        })
+
+
+
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title >Document</title>
+</head>
+<body>
+    <div id= 'App1'>
+        <Com1></Com1>
+        <Com2></Com2>
+    </div>
+    <script>      
+       Vue.component('Com1', {
+            template: `<div>
+                       <button @click=f1>{{this.num}}</button>
+                       </div>`,
+            methods: {
+                f1: function () {
+                    console.log('f1 call');
+                    eventBus.$emit('eb',this.num)
+                }
+            },
+            data: function(){
+                return {
+                    num:100,
+                }
+            },
+        })
+
+
+        //step 2 : log 출력하기
+        Vue.component('Com2', {
+            template: `<div>
+                       <button>{{this.num}}</button>
+                       </div>`,
+            created() {
+                console.log('1');
+                // eventBus.$on('eb', function(){
+                //     this.num=value*4;
+                //     console.log(this.num);
+                    
+                // })
+                
+                eventBus.$on('eb', (value) => {
+
+                    this.num=value*4;
+                    console.log(this.num);
+                    
+                })   //Step 3이벤트 예약, 뒤에는 람다식 써줘야함 아무튼 그럼               
+            },
+            data: function(){
+                return {
+                    num:100,
+                }
+            },
+        })
+
+
+        //step 1 : event 객체 생성
+        let eventBus = new Vue();
+        new Vue({
+            el: '#App1',
+        })
+    </script>
+    </body>
+</html>
