@@ -23,8 +23,6 @@
     </body>
 </html> -->
 
-
-
 <!-- 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,9 +81,6 @@
         </script>
     </body>
 </html> -->
-
-
-
 
 <!-- 
 <!DOCTYPE html>
@@ -178,8 +173,6 @@
 </body>
 </html> -->
 
-
-
 <!-- 
 <!DOCTYPE html>
 <html>
@@ -213,10 +206,6 @@
 </body>
 
 </html> -->
-
-
-
-
 
 <!-- 
 
@@ -263,14 +252,6 @@
 
 </html> -->
 
-
-
-
-
-
-
-
-
 <!-- 
 
 
@@ -312,18 +293,6 @@
     </body>
 </html> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- 
 <!DOCTYPE html>
 <html>
@@ -363,7 +332,6 @@
 </body>
 </html> -->
 
-
 <!-- 
 <!DOCTYPE html>
 <html>
@@ -389,11 +357,6 @@
     </script>
 </body>
 </html> -->
-
-
-
-
-
 
 <!-- 
 
@@ -464,15 +427,6 @@
     
 </html> -->
 
-
-
-
-
-
-
-
-
-
 <!-- 
 <!DOCTYPE html>
 <html lang="en">
@@ -520,23 +474,6 @@ v-bind쓰면 typeof썼을때 숫자가 문자열에서 숫자로 나온다.
 v-bind: :으로 치환 할 수있다.
  -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- <!DOCTYPE html>
 <html lang="en">
 
@@ -577,11 +514,6 @@ v-bind: :으로 치환 할 수있다.
   </body>
 
 </html> -->
-
-
-
-
-
 
 <!-- 
 
@@ -635,10 +567,6 @@ v-bind: :으로 치환 할 수있다.
 
 </html> -->
 
-
-
-
-
 <!-- 
 
 <!DOCTYPE html>
@@ -679,9 +607,6 @@ v-bind: :으로 치환 할 수있다.
     </script>
     </body>
     </html> -->
-
-
-
 
 <!-- 
 <!DOCTYPE html>
@@ -726,21 +651,6 @@ v-bind: :으로 치환 할 수있다.
 </body>
 
 </html> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- 
 
@@ -792,8 +702,6 @@ v-bind: :으로 치환 할 수있다.
 </body>
 
 </html>  -->
-
-
 
 <!-- 왜 안돼 ㅇ나ㅣㅓ리ㅏㄴㅇ멀;
 
@@ -854,11 +762,7 @@ v-bind: :으로 치환 할 수있다.
 
 </html> -->
 
-
-
-
-
-
+<!-- 
 
 <!DOCTYPE html>
 <html>
@@ -927,4 +831,361 @@ v-bind: :으로 치환 할 수있다.
         })
     </script>
     </body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='App'>
+        <h1>{{num}}</h1>
+    </div>
+    <script>
+            new Vue({
+                el: '#App',
+                created: function(){
+                    console.log(1)
+                    this.num = 10;
+                    console.log(this.num)
+                },
+                data: ()=>{
+                    return {
+                        num: 0,
+                    }
+                },
+                mounted: function(){
+                    console.log(2)
+                    this.num = 20;
+                },
+            })
+    </script>
+</body>
+</html> -->
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='App'>
+        <h1>{{num}}</h1>
+        <ul>
+            <li v-for="item in rd">{{item.id}}-{{item.name}}-{{item.username}}-{{item.phone}}</li>
+        </ul> 
+    </div>
+    <script>
+            new Vue({
+                el: '#App',
+                data: ()=>{
+                    return {
+                        num: 0,
+                        list: ['232','232','232'],
+                        rd: [],
+                    }
+                },
+                //파일에서 데이터를 리딩할때 그 데이터를 갖고오는 목적으로 사용하는 것이 created:
+                created: function(){
+                    console.log(1)
+                    this.num = 10;
+                    console.log(this.num)
+                    // this.num=this.num*3;
+                    // this.num=프롭스*3 : 프롭스에 값이 들어오면 이렇게 할 수 있다.
+                    
+                    //문법확인하기 위한 코드
+                    // let ar = [{a:10, b:20},{a:30, b:40},{a:50, b:60}]
+                   
+                    // console.log(ar);
+
+                    // this.list=ar;
+
+                    // console.log(this.list);
+                    //서버측에 데이터주세요 하는게 ajax를 사용한? 엑시오스(axios)
+                    axios.get('https://koreanjson.com/users')
+                        .then( (response) => {
+                            console.log(response);
+                            console.log(response.data);
+                            this.rd=response.data;
+                            console.log(this.rd);
+                            
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+
+                    
+
+                },
+                
+                mounted: function(){
+                    console.log(2)
+                    this.num = 20;
+                },
+            })
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+ -->
+
+<!--  
+ <!DOCTYPE html>
+<html lang="en">
+  ​
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    ​
+   
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title></head
+  >​
+
+  <body>
+    <div id="app">
+      <ul>
+        
+        <li v-for="item in list">
+          {{ item.id }} {{ item.name }} {{ item.email }}
+        </li>
+      </ul>
+      <span>여러 줄을 가지는 메시지:</span>
+      <p style="white-space: pre-line;">{{ message }}</p>
+      <br />
+      <textarea
+        v-model="message"
+        placeholder="여러줄을 입력해보세요"
+      ></textarea>
+
+      <input type="checkbox" id="checkbox" v-model="checked" />
+      <label for="checkbox">{{ checked }}</label>
+    </div>
+    <div id="example-3">
+      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+      <label for="mike">Mike</label>
+      <br />
+      <span>체크한 이름: {{ checkedNames }}</span>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          list: [],
+        },
+        created: function () {
+          // axios.get('https://jsonplaceholder.typicode.com/users/')
+          axios
+            .get("http://my-json-server.typicode.com/kbu715/lion/banana")
+            .then(
+              function (response) {
+                // 데이터를 읽어 들였다면 list에 할당하기
+                // address company email id name phone username website
+                this.list = response.data;
+                console.log(this.list);
+              }.bind(this)
+            )
+            .catch(function (e) {
+              console.error(e);
+            });
+          console.log(this.list);
+        },
+      });
+      new Vue({
+        el: "#example-3",
+        data: {
+          checkedNames: [],
+        },
+      });
+    </script>
+  </body>
+
+
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="App">
+      <input v-model="limitAge" />개 이상<br />
+      <input v-model="limitCount" />개 제한
+      <ul>
+        <li v-for="(item, index) in list">
+          index:{{index}}, 이름:{{item.name}}, 나이:{{item.age}}
+        </li>
+        ---------------------------------
+        <li v-for="(item, index) in f1()">
+          index:{{index}}, 이름:{{item.name}}, 나이:{{item.age}}
+        </li>
+      </ul>
+    </div>
+    <script>
+      new Vue({
+        el: "#App",
+        // data: () => {
+        //   return {
+        //     info: [
+        //       { name: "호랑이", age: 10 },
+        //       { name: "코끼리", age: 20 },
+        //       { name: "돼지", age: 30 },
+        //       { name: "독수리", age: 85 },
+        //       { name: "토끼", age: 60 },
+        //     ],
+        //     limitAge: 50,
+        //   };
+        // },
+        data: {
+          list: [],
+          info: [
+            { name: "호랑이", age: 10 },
+            { name: "코끼리", age: 20 },
+            { name: "돼지", age: 30 },
+            { name: "독수리", age: 85 },
+            { name: "토끼", age: 60 },
+          ],
+          limitAge: 50,
+          limitCount: 2,
+        },
+        methods: {
+          f1: function () {
+            let ar = this.list.filter(i => {
+              return i.age >= this.limitAge;
+            });
+            let ar2 = ar.slice(0, this.limitCount);
+            return ar2;
+          },
+        },
+        created: function () {
+          // axios.get('https://jsonplaceholder.typicode.com/users/')
+          axios
+            .get("http://my-json-server.typicode.com/kbu715/lion/banana")
+            .then(
+              function (response) {
+                // 데이터를 읽어 들였다면 list에 할당하기
+                // address company email id name phone username website
+                this.list = response.data;
+                console.log(this.list);
+              }.bind(this)
+            )
+            .catch(function (e) {
+              console.error(e);
+            });
+          console.log(this.list);
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="App">
+      <ul>
+        <li v-for="(item, index) in ar">
+          {{index}}, {{item.name}}{{item.age}}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#App",
+        data: {
+          num: 0,
+          limitAge: 30,
+          limitCount: 2,
+          ar: [
+            { name: "이순신", age: 30 },
+            { name: "리순신", age: 20 },
+            { name: "강순신", age: 88 },
+            { name: "박순신", age: 63 },
+            { name: "최순신", age: 13 },
+          ],
+        },
+        methods: {
+          f1: () => {},
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="App">
+      <ul>
+        <li v-for="item in br">{{item.name}} {{item.age}}</li>
+      </ul>
+      <ul>
+        <Bpp
+          v-for="item in br"
+          v-bind:name="item.name"
+          v-bind:age="item.age"
+        ></Bpp>
+      </ul>
+    </div>
+    <script>
+      Vue.component("Bpp", {
+        template: `<li>{{name}} {{age}}</li>`,
+        props: ["name", "age"],
+      });
+      new Vue({
+        el: "#App",
+        data: () => {
+          return {
+            br: [
+              { name: "개나리", age: 30 },
+              { name: "시나몬", age: 20 },
+              { name: "발꼬락", age: 50 },
+              { name: "새우깡", age: 88 },
+              { name: "끼리끼리", age: 68 },
+            ],
+          };
+        },
+        methods: {},
+      });
+    </script>
+  </body>
 </html>
