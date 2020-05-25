@@ -1145,6 +1145,7 @@ v-bind: :으로 치환 할 수있다.
   </body>
 </html> -->
 
+<!-- 
 <!DOCTYPE html>
 <html>
   <head>
@@ -1188,4 +1189,483 @@ v-bind: :으로 치환 할 수있다.
       });
     </script>
   </body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="App">
+      <button>{{a}}</button>
+      <pre>{{$data}}</pre> 
+      <input v-model="b" />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#App",
+        data: {
+          a: "호랑이",
+          b: "코끼리",
+        },
+        methods: {
+          f1: () => {},
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- 
+<pre></pre> 디버깅용 -->
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="App">
+        <button v-on:click="f1">button1</button>
+        <button v-on:click="f2">button2</button>
+        <button v-on:click="f3">button3</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#App",
+            data: {
+                a: "호랑이",
+                b: "코끼리",
+                num: 10,
+            },
+            methods: {
+                f1: function () { console.log(this.num); },
+                f2() { console.log(this.num); },
+                f3: () => { console.log(this.num); },
+            },
+        });
+    </script>
+</body>
+
 </html>
+
+
+
+
+
+this.num 했을때 람다함수는 undefined가 출력된다. -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="App">
+      <button>button1</button>
+      <button v-if="state">button2</button>
+      <button v-show="state">button3</button>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#App",
+        data: {
+          state: false,
+        },
+        methods: {
+          f1: function () {
+            console.log(this.num);
+          },
+          f2() {
+            console.log(this.num);
+          },
+          f3: () => {
+            console.log(this.num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+
+
+
+v-if 일때는 state값이 false이면 개발자 모드 elements 탭에서 <div></div> 안에
+button태그가 사라지는데 v-show일때는 사자지지 않는다. -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+      .tiger {
+        color: red;
+      }
+      .lion {
+        font-size: 30px;
+      }
+      body {
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="App">
+      <button class="tiger">button1</button><br />
+      <button class="lion">button2</button><br />
+      <button class="tiger lion">button3</button><br />
+      <button v-bind:class="{tiger:true}">button4</button><br />
+      <button class="tiger" v-bind:class="{lion:true}">button5</button><br />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#App",
+        data: {
+          a: "호랑이",
+          b: "코끼리",
+          num: 10,
+        },
+        methods: {
+          f1: function () {
+            console.log(this.num);
+          },
+          f2() {
+            console.log(this.num);
+          },
+          f3: () => {
+            console.log(this.num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- <button class="tiger" v-bind:class="{lion:true}">button5</button> -->
+<!-- tiger 스타일만 포함시킬것이냐 lion도 할것이냐 -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+      .tiger {
+        color: darkblue;
+      }
+
+      .lion {
+        font-size: 30px;
+      }
+
+      body {
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="App">
+      <ul>
+        <li v-bind:class="{tiger:item.age>=30, lion:item.age>=40}" v-for="item in list">{{item}}<span v-if="item.age>=35">나이많음</span></li>
+        
+      </ul>
+   </div>
+
+    <script>
+      new Vue({
+        el: "#App",
+        data: {
+          list: [
+            { name: "호랑이", age: 20 },
+            { name: "침팬지", age: 30 },
+            { name: "독수리", age: 40 },
+          ],
+        },
+        methods: {
+          f1: function () {
+            console.log(this.num);
+          },
+          f2() {
+            console.log(this.num);
+          },
+          f3: () => {
+            console.log(this.num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+      .tiger {
+        color: darkblue;
+      }
+
+      .lion {
+        font-size: 30px;
+      }
+
+      body {
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="App">
+      <input v-model="aa" />
+      <button v-on:click="f1()">추가</button>
+      <ul>
+        <li
+          v-bind:class="{tiger:item.age>=30, lion:item.age>=40}"
+          v-for="item in list"
+        >
+          {{item.name}}<span v-if="item.age>=35">나이많음</span>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#App",
+        data: {
+          aa: "앵무새",
+          list: [
+            { name: "호랑이", age: 20 },
+            { name: "침팬지", age: 30 },
+            { name: "독수리", age: 40 },
+          ],
+        },
+        methods: {
+          f1: function () {
+            this.list.push({ name: this.aa, age: 40 });
+          },
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+      .tiger {
+        color: red;
+      }
+
+      .lion {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="App">
+      <input v-model="parrot.name" />
+      <button v-on:click="f1()">추가</button>
+      <ul>
+        <li v-for="(item,index) in list" v-bind:class="{tiger: item.age > 35, lion: item.age < 15}">
+          {{item.name}} {{item.age}}
+          <button v-on:click="f2(item,index)">
+            벤자민
+          </button>
+          <span v-if="item.age > 35">나이많다</span>
+          <span v-if="item.age < 20">어리다</span>
+        </li>
+      </ul>
+    </div>
+    <script>
+      new Vue({
+        el: "#App",
+        data: {
+          list: [
+            { name: "호랑이", age: 20 },
+            { name: "코끼리", age: 30 },
+            { name: "사자", age: 40 },
+          ],
+          parrot: { name: "앵무새", age: 50 },
+        },
+        methods: {
+          f1: function () {
+            this.list.push(this.parrot);
+          },
+          f2: function (item, index) {
+            item.age -= 5;
+            if (item.age <= 0) {
+              this.list.splice(index, 1); //index로부터 1개 삭제
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+      .tiger {
+        color: red;
+      }
+
+      .lion {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="App">
+      <button ref="tiger">button1</button>
+      <button v-on:click="f1">button2</button>
+    </div>
+    <script>
+      new Vue({
+        el: "#App",
+        data: {},
+        methods: {
+          f1: function () {
+            let btn = this.$refs.tiger;
+            btn.style.color = "red";
+            btn.innerText = "호랑이";
+            btn.style.background = "blue";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+ref="tiger" // 나를 다른곳에서 쓰려고 하면 tiger를 써라. -->
+<!-- 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="App">
+      <button v-on:click="count++">{{count}}</button>
+    </div>
+    <script>
+      new Vue({
+        el: "#App",
+        data() {
+          return {
+            count: 0,
+          };
+        },
+
+        watch: {
+          count: {
+            handler: function () {
+              //count변수가 갱신될때 실행되는 함수
+              console.log("hello world!");
+            },
+            immediate: true,
+          },
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="App">
+      <Bpp v-bind:num="130"></Bpp>
+    </div>
+
+    <script>
+      Vue.component("Bpp", {
+        template: `<button v-on:click="count++">{{count}}</button>`,
+        props: ["num"],
+        data() {
+          return {
+            count: this.num,
+          };
+        },
+        watch: {
+          //항상지켜봐라
+          count: {
+            handler: function () {
+              console.log(this.count);
+            },
+            immediate: false,
+          },
+        },
+      });
+      new Vue({
+        el: "#App",
+      });
+    </script>
+  </body>
+</html>
+
+app에서 bpp로 데이터 값 넘겨줘서 bpp에서 그 데이터로 카운팅
